@@ -1,11 +1,11 @@
 # lava grpc, for example: ip:xxxxx or domain:xxxxx, do not need http:// or https://
-lavagrpc=
+lavagrpc=""
 
 # lava chain id
-chainid=lava-testnet-2
+chainid="lava-testnet-2"
 
 # Your lava provider address
-lavaprovideraddress=
+lavaprovideraddress=""
 
 
 # the chains you wanna monitor
