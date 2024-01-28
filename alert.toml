@@ -1,0 +1,18 @@
+[alert]
+
+enable=true
+
+[discord]
+
+enable=true
+
+# discord webhook url, you can create one here: https://support.discordapp.com/hc/en-us/articles/228383668-Intro-to-Webhooks
+webhook=""
+
+# discord userid  https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID-
+alertuserid=[""]
+
+# discord role id https://www.itgeared.com/how-to-get-role-id-on-discord/
+alertroleid=[""]
+
+

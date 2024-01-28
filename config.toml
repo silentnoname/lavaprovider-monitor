@@ -1,0 +1,12 @@
+# lava grpc, for example: ip:xxxxx or domain:xxxxx, do not need http:// or https://
+lavagrpc=
+
+# lava chain id
+chainid=lava-testnet-2
+
+# Your lava provider address
+lavaprovideraddress=
+
+
+# the chains you wanna monitor
+chains=["LAV1", "EVMOST", "EVMOS", "AXELAR", "AXELART"]
