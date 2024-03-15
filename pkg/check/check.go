@@ -24,7 +24,7 @@ func exponentialBackoff(retry int) {
 }
 
 func LavaProviderChecker(address string, lavaGrpc string, LavaChainid string, maxRetries int) (types.QueryAccountInfoResponse, error) {
-	grpcConn, err := grpc.Dial(lavaGrpc, grpc.WithTransportCredentials(insecure.NewCredentials()))
+	grpcConn, err := grpc.Dial(lavaGrpc, grpc.WithTransportCredentials(insecure.NewCredentials()), grpc.WithDefaultCallOptions(grpc.MaxCallRecvMsgSize(10*1024*1024)))
 	if err != nil {
 		// Just log because grpc redials
 		log.Log.Error("Failed to dial grpc", zap.Error(err))
