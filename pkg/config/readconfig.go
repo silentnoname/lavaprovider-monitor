@@ -32,15 +32,15 @@ func GetAlertConfig() AlertConfig {
 	var config AlertConfig
 	err := viper.ReadInConfig() // Find and read the config file
 	if err != nil {             // Handle errors reading the config file
-		log.Log.Error("read alert config file alert.toml.example failed", zap.Error(err))
-		panic(fmt.Errorf("read alert config file alert.toml.example file failed: %s \n", err))
+		log.Log.Error("read alert config file alert.toml failed", zap.Error(err))
+		panic(fmt.Errorf("read alert config file alert.toml file failed: %s \n", err))
 	}
 
 	// unmarshal the config
 	err = viper.Unmarshal(&config)
 	if err != nil {
-		log.Log.Error("unmarshal alert config file alert.toml.example failed", zap.Error(err))
-		panic(fmt.Errorf("unmarshal alert config file alert.toml.example file failed: %s \n", err))
+		log.Log.Error("unmarshal alert config file alert.toml failed", zap.Error(err))
+		panic(fmt.Errorf("unmarshal alert config file alert.toml file failed: %s \n", err))
 	}
 	return config
 
@@ -61,15 +61,15 @@ func GetLavaProviderMonitorConfig() LavaProviderMonitorConfig {
 	var config LavaProviderMonitorConfig
 	err := viper.ReadInConfig() // Find and read the config file
 	if err != nil {             // Handle errors reading the config file
-		log.Log.Error("read lava provider monitor config config.toml.example failed", zap.Error(err))
-		panic(fmt.Errorf("read lava provider monitor config config.toml.example failed: %s \n", err))
+		log.Log.Error("read lava provider monitor config config.toml failed", zap.Error(err))
+		panic(fmt.Errorf("read lava provider monitor config config.toml failed: %s \n", err))
 	}
 
 	// unmarshal the config
 	err = viper.Unmarshal(&config)
 	if err != nil {
-		log.Log.Error("unmarshal lava provider monitor config config.toml.example failed", zap.Error(err))
-		panic(fmt.Errorf("unmarshal lava provider monitor config config.toml.example failed: %s \n", err))
+		log.Log.Error("unmarshal lava provider monitor config config.toml failed", zap.Error(err))
+		panic(fmt.Errorf("unmarshal lava provider monitor config config.toml failed: %s \n", err))
 	}
 
 	return config
