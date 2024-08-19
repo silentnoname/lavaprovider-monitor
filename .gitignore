@@ -31,3 +31,4 @@ go.work
 Thumbs.db
 
 .log
+*_test.go
