@@ -5,11 +5,10 @@ import (
 	"fmt"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/grpc/tmservice"
-	"github.com/lavanet/lava/app"
-	"github.com/lavanet/lava/utils"
-	epochstoragetypes "github.com/lavanet/lava/x/epochstorage/types"
-	"github.com/lavanet/lava/x/pairing/types"
-	spectypes "github.com/lavanet/lava/x/spec/types"
+	"github.com/lavanet/lava/v2/app"
+	"github.com/lavanet/lava/v2/utils"
+	"github.com/lavanet/lava/v2/x/pairing/types"
+	spectypes "github.com/lavanet/lava/v2/x/spec/types"
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
@@ -52,7 +51,7 @@ func LavaProviderChecker(address string, lavaGrpc string, LavaChainid string, ma
 	}
 
 	pairingQuerier := types.NewQueryClient(clientCtx)
-	epochStorageQuerier := epochstoragetypes.NewQueryClient(clientCtx)
+	//epochStorageQuerier := epochstoragetypes.NewQueryClient(clientCtx)
 	serviceClient := tmservice.NewServiceClient(grpcConn)
 
 	latestBlockRes, err := serviceClient.GetLatestBlock(
@@ -100,26 +99,27 @@ func LavaProviderChecker(address string, lavaGrpc string, LavaChainid string, ma
 			}
 		}
 	}
-	for retry := 0; retry < maxRetries; retry++ {
-		unstakeEntriesAllChains, err := epochStorageQuerier.StakeStorage(ctx, &epochstoragetypes.QueryGetStakeStorageRequest{
-			Index: epochstoragetypes.StakeStorageKeyUnstakeConst,
-		})
-		if err == nil {
-			if len(unstakeEntriesAllChains.StakeStorage.StakeEntries) > 0 {
-				for _, unstakingProvider := range unstakeEntriesAllChains.StakeStorage.StakeEntries {
-					if unstakingProvider.Address == address {
-						info.Unstaked = append(info.Unstaked, unstakingProvider)
-					}
-				}
-			}
-			break
-		}
-		if retry < maxRetries-1 {
-			exponentialBackoff(retry)
-		} else {
-			return types.QueryAccountInfoResponse{}, utils.LavaFormatError("failed to get all unstake entries", err)
-		}
-	}
+	//for retry := 0; retry < maxRetries; retry++ {
+	//	unstakeEntriesAllChains, err2 := epochStorageQuerier.StakeStorage(ctx, &epochstoragetypes.QueryGetStakeStorageRequest{
+	//		//Index: epochstoragetypes.StakeStorageKeyUnstakeConst,
+	//		Index: "",
+	//	})
+	//	if err2 == nil {
+	//		if len(unstakeEntriesAllChains.StakeStorage.StakeEntries) > 0 {
+	//			for _, unstakingProvider := range unstakeEntriesAllChains.StakeStorage.StakeEntries {
+	//				if unstakingProvider.Address == address {
+	//					info.Unstaked = append(info.Unstaked, unstakingProvider)
+	//				}
+	//			}
+	//		}
+	//		break
+	//	}
+	//	if retry < maxRetries-1 {
+	//		exponentialBackoff(retry)
+	//	} else {
+	//		return types.QueryAccountInfoResponse{}, utils.LavaFormatError("failed to get all unstake entries", err2)
+	//	}
+	//}
 	return info, nil
 }
 
